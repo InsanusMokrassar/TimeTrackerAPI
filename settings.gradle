@@ -1,4 +1,4 @@
-rootProject.name = 'project_name'
+rootProject.name = 'time_tracker'
 
 String[] includes = [
     ":lib"
