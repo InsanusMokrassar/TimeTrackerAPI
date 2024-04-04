@@ -1,7 +1,8 @@
 rootProject.name = 'time_tracker'
 
 String[] includes = [
-    ":lib"
+    ":common",
+    ":lib",
 ]
 
 

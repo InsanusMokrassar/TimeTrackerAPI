@@ -1,7 +1,7 @@
 // THIS CODE HAVE BEEN GENERATED AUTOMATICALLY
 // TO REGENERATE IT JUST DELETE FILE
 // ORIGINAL FILE: User.kt
-package dev.inmo.time_tracker.lib.models
+package dev.inmo.time_tracker.common.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
