@@ -3,7 +3,11 @@
 kotlin = "1.9.23"
 kotlin-serialization = "1.6.3"
 
+microutils = "0.20.41"
+
 dokka = "1.9.20"
+
+ksp = "1.9.23-1.0.19"
 
 dexcount = "4.0.0"
 junit_version = "4.12"
@@ -26,6 +30,9 @@ kotlin-test-js = { module = "org.jetbrains.kotlin:kotlin-test-js", version.ref =
 android-test-junit = { module = "androidx.test.ext:junit", version.ref = "test_ext_junit_version" }
 android-test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso_core" }
 
+microutils-repos-generator = { module = "dev.inmo:micro_utils.repos.generator", version.ref = "microutils" }
+microutils-repos-common = { module = "dev.inmo:micro_utils.repos.common", version.ref = "microutils" }
+
 # buildscript classpaths
 
 android-tools-build = { module = "com.android.tools.build:gradle", version.ref = "android-gradle-plugin" }
@@ -33,6 +40,7 @@ android-dexcount = { module = "com.getkeepsafe.dexcount:dexcount-gradle-plugin",
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 kotlin-dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+buildscript-kt-ksp = { module = "com.google.devtools.ksp:symbol-processing-gradle-plugin", version.ref = "ksp" }
 
 [plugins]
 
