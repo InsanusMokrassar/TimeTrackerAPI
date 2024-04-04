@@ -1,8 +1,8 @@
-package dev.inmo.time_tracker.lib.features
+package dev.inmo.time_tracker.lib.features.auth
 
 import dev.inmo.micro_utils.common.Either
-import dev.inmo.time_tracker.common.models.RegisteredUser
-import dev.inmo.time_tracker.common.models.Username
+import dev.inmo.time_tracker.common.models.user.RegisteredUser
+import dev.inmo.time_tracker.common.models.user.Username
 
 interface AuthFeature {
     sealed interface Error {

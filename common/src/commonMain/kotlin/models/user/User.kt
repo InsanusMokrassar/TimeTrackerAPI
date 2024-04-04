@@ -1,4 +1,4 @@
-package dev.inmo.time_tracker.common.models
+package dev.inmo.time_tracker.common.models.user
 
 import dev.inmo.micro_utils.repos.annotations.GenerateCRUDModel
 import kotlinx.serialization.Serializable

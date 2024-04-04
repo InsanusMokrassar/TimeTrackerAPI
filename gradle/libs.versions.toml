@@ -4,6 +4,7 @@ kotlin = "1.9.23"
 kotlin-serialization = "1.6.3"
 
 microutils = "0.20.41"
+ktor = "2.3.9"
 
 dokka = "1.9.20"
 
@@ -29,6 +30,8 @@ kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version
 kotlin-test-js = { module = "org.jetbrains.kotlin:kotlin-test-js", version.ref = "kotlin" }
 android-test-junit = { module = "androidx.test.ext:junit", version.ref = "test_ext_junit_version" }
 android-test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso_core" }
+
+ktor-client = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 
 microutils-repos-generator = { module = "dev.inmo:micro_utils.repos.generator", version.ref = "microutils" }
 microutils-repos-common = { module = "dev.inmo:micro_utils.repos.common", version.ref = "microutils" }
