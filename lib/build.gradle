@@ -12,6 +12,7 @@ kotlin {
             dependencies {
                 api project(":time_tracker.common")
                 api libs.ktor.client
+                api libs.microutils.repos.common
             }
         }
     }
