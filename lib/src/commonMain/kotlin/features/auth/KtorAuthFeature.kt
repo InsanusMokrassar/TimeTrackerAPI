@@ -7,6 +7,7 @@ import dev.inmo.micro_utils.coroutines.SmartRWLocker
 import dev.inmo.micro_utils.coroutines.launchSafelyWithoutExceptions
 import dev.inmo.micro_utils.coroutines.withReadAcquire
 import dev.inmo.micro_utils.coroutines.withWriteLock
+import dev.inmo.time_tracker.common.models.auth.Credentials
 import dev.inmo.time_tracker.common.models.user.RegisteredUser
 import dev.inmo.time_tracker.common.models.user.Username
 import io.ktor.client.*
@@ -30,6 +31,7 @@ class KtorAuthFeature(
 ) : AuthFeature {
     private val Log = logger
     private val requestsLocker = SmartRWLocker()
+    private val anyAuthUrlPart = "$baseUrl/${AuthConstants.authRootPathPart}"
     private val refreshUrl = "$baseUrl/${AuthConstants.authRootPathPart}/${AuthConstants.refreshPathPart}"
     private val loginUrl = "$baseUrl/${AuthConstants.authRootPathPart}/${AuthConstants.loginPathPart}"
 
@@ -37,9 +39,10 @@ class KtorAuthFeature(
         plugin(HttpSend).intercept { request ->
             var serverAvailability = true
             var resultCall: HttpClientCall? = null
+            val urlString = request.url.toString()
             while (resultCall == null) {
-                if (requestsLocker.writeMutex.isLocked && request.url.toString().contains("$baseUrl/${AuthConstants.authRootPathPart}/${AuthConstants.refreshPathPart}")) {
-
+                if (requestsLocker.writeMutex.isLocked && (urlString.contains(anyAuthUrlPart))) {
+                    Log.d { "$urlString is some blocking auth request, pass response as is" }
                     return@intercept execute(request)
                 }
                 resultCall = requestsLocker.withReadAcquire {
@@ -118,6 +121,19 @@ class KtorAuthFeature(
             refreshTokenMutex.withLock {
                 if (refreshTokenJob == null) {
                     refreshTokenJob = scope.launchSafelyWithoutExceptions {
+                        requestsLocker.withWriteLock {
+                            val token = credsRepo.getCreds() ?: return@launchSafelyWithoutExceptions
+                            val response = resultClient.post(
+                                refreshUrl
+                            ) {
+                                setBody(token.refresh.string)
+                            }.body<Credentials.Token?>()
+                            if (response != null) {
+                                credsRepo.saveCreds(response)
+                            } else {
+                                credsRepo.clearCreds()
+                            }
+                        }
 
                         refreshTokenMutex.withLock {
                             refreshTokenJob = null
@@ -129,7 +145,7 @@ class KtorAuthFeature(
     }
 
     override suspend fun getMe(): RegisteredUser? {
-        TODO("Not yet implemented")
+
     }
 
     override suspend fun auth(username: Username, password: String): Either<RegisteredUser, AuthFeature.Error.Auth>? {
