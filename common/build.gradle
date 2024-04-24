@@ -14,6 +14,7 @@ kotlin {
                 api libs.microutils.coroutines
                 api libs.microutils.repos.common
                 api libs.microutils.repos.inmemory
+                api libs.microutils.repos.cache
                 api libs.klock
                 api libs.kslog
             }

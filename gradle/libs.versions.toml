@@ -46,6 +46,7 @@ microutils-coroutines = { module = "dev.inmo:micro_utils.coroutines", version.re
 microutils-repos-generator = { module = "dev.inmo:micro_utils.repos.generator", version.ref = "microutils" }
 microutils-repos-common = { module = "dev.inmo:micro_utils.repos.common", version.ref = "microutils" }
 microutils-repos-inmemory = { module = "dev.inmo:micro_utils.repos.inmemory", version.ref = "microutils" }
+microutils-repos-cache = { module = "dev.inmo:micro_utils.repos.cache", version.ref = "microutils" }
 
 # buildscript classpaths
 
