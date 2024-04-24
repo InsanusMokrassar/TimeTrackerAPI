@@ -20,6 +20,12 @@ publishing {
 
             developers {
                 
+                    developer {
+                        id = "InsanusMokrassar"
+                        name = "Ovsiannikov Aleksei"
+                        email = "ovsyannikov.alexey95@gmail.com"
+                    }
+                
             }
 
             licenses {
