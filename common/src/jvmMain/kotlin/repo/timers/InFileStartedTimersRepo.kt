@@ -2,10 +2,7 @@ package dev.inmo.time_tracker.common.repo.timers
 
 import dev.inmo.micro_utils.common.MPPFile
 import dev.inmo.micro_utils.common.applyDiff
-import dev.inmo.micro_utils.coroutines.SmartRWLocker
-import dev.inmo.micro_utils.coroutines.subscribeSafelyWithoutExceptions
-import dev.inmo.micro_utils.coroutines.withReadAcquire
-import dev.inmo.micro_utils.coroutines.withWriteLock
+import dev.inmo.micro_utils.coroutines.*
 import dev.inmo.micro_utils.repos.KeyValueRepo
 import dev.inmo.micro_utils.repos.MapKeyValueRepo
 import dev.inmo.micro_utils.repos.cache.InvalidatableRepo
@@ -38,6 +35,12 @@ class InFileStartedTimersRepo (
                 json.encodeToString(mapSerializer, map)
             }
         )
+    }
+
+    init {
+        scope.launchSafelyWithoutExceptions {
+            invalidate()
+        }
     }
 
     override suspend fun invalidate() {
