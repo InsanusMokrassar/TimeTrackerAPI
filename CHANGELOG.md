@@ -1,5 +1,10 @@
 # TimeTrackerAPI Changelog
 
+## 0.0.3
+
+* `Common`:
+    * Fix in initialization of `InFileStartedTimersRepo`
+
 ## 0.0.2
 
 * Dependencies:
