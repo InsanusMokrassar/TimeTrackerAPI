@@ -1,5 +1,10 @@
 # TimeTrackerAPI Changelog
 
+## 0.0.4
+
+* `Common`:
+    * Fix in `InFilesActivitiesRepo` and `InFilesTimersRepo`
+
 ## 0.0.3
 
 * `Common`:
