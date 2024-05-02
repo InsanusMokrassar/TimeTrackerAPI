@@ -51,7 +51,7 @@ class InFilesTimersRepo(
     }
 
     override suspend fun createObject(newValue: NewTimer): Pair<TimerId, RegisteredTimer> {
-        val id = TimerId(map.size.toLong())
+        val id = TimerId((map.keys.maxOfOrNull { it.long } ?: 0L) + 1)
         return id to newValue.asRegistered(id)
     }
 

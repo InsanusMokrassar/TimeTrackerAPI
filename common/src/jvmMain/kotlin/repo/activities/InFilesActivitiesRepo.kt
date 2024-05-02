@@ -47,7 +47,7 @@ class InFilesActivitiesRepo(
     }
 
     override suspend fun createObject(newValue: NewActivity): Pair<ActivityId, RegisteredActivity> {
-        val id = ActivityId(map.size.toLong())
+        val id = ActivityId((map.keys.maxOfOrNull { it.long } ?: 0L) + 1)
         return id to newValue.asRegistered(id)
     }
 
